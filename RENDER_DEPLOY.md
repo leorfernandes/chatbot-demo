@@ -1,4 +1,4 @@
-# 🚀 Quick Render Deployment Guide
+# Quick Render Deployment Guide
 
 ## Step-by-Step Instructions
 
@@ -25,7 +25,7 @@ Start Command: cd backend && python app.py
 Instance Type: Free
 ```
 
-⚠️ **IMPORTANT**: Make sure "Start Command" is exactly: `cd backend && python app.py`
+**IMPORTANT**: Make sure "Start Command" is exactly: `cd backend && python app.py`
 (Double-check there's no typo like "backedn")
 
 ### 4. Deploy
@@ -38,7 +38,7 @@ Instance Type: Free
 - Click "Start Onboarding Demo"
 - Test the full flow!
 
-## 🎯 For Your Interview
+## For Your Interview
 
 ### Before the Demo:
 1. **Wake up your app** - Visit the URL 2-3 minutes before your interview
@@ -62,4 +62,4 @@ Instance Type: Free
 - This is normal for free tier after 15 minutes of inactivity
 - Simply wait 30-60 seconds for it to wake up
 
-Your chatbot demo is now live and ready for interviews! 🎉
+Your chatbot demo is now live and ready for interviews!

@@ -136,7 +136,7 @@ def handle_family_goals(parameters, session_id):
     
     session_data = current_session[session_id]
     
-    # Extract family goals from parameters (this would be more sophisticated with proper entity extraction)
+    # Extract family goals from parameters (this could be more advanced with proper entity extraction)
     goals = []
     if 'family-goals' in parameters:
         goals = parameters['family-goals']

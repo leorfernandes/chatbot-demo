@@ -1,6 +1,6 @@
 # Compatibility Chatbot Demo
 
-A sophisticated Dialogflow-powered chatbot demonstrating explainable AI for family planning compatibility matching. This project showcases rule-based recommendation systems, natural language processing, and transparent algorithmic decision-making.
+A Dialogflow-powered chatbot for family planning compatibility matching. Built with Flask backend and rule-based matching algorithms with explainable AI features.
 
 ## Live Demo
 [Render Deployment](https://chatbot-demo-x6yd.onrender.com/)
@@ -10,13 +10,15 @@ A sophisticated Dialogflow-powered chatbot demonstrating explainable AI for fami
 
 ## Project Overview
 
-- **Dialogflow Integration**: Conversational Chatbot with intent recognition and entity extraction
-- **Rule-Based Matching**: Sophisticated compatibility scoring algorithms
-- **Explainable Chatbot**: Transparent reasoning for all recommendations
+- **Dialogflow Integration**: Conversational AI with intent recognition and entity extraction
+- **Rule-Based Matching**: Compatibility scoring algorithms
+- **Explainable AI**: Transparent reasoning for recommendations
 - **Real-Time Processing**: Dynamic user profiling and matching
-- **Family Planning Focus**: Values-based compatibility for intentional family formation
+- **Family Planning Focus**: Values-based compatibility matching
 
 ## Quick Start
+
+Note: This is a demo project for interview purposes.
 
 ### Prerequisites
 - Python 3.8+

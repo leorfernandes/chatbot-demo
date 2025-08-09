@@ -6,7 +6,9 @@ from models import UserProfile, CompatibilityScore
 class CompatibilityEngine:
     """
     Rule-based and weighted compatibility matching engine
-    Demonstrates explainable AI for family planning compatibility
+        Family planning compatibility matching engine.
+    
+    Uses rule-based algorithms for explainable AI recommendations.
     """
     
     def __init__(self):
