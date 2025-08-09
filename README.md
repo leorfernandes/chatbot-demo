@@ -1,14 +1,12 @@
-# Firstep Compatibility Chatbot Demo
+# Compatibility Chatbot Demo
 
 A sophisticated Dialogflow-powered chatbot demonstrating explainable AI for family planning compatibility matching. This project showcases rule-based recommendation systems, natural language processing, and transparent algorithmic decision-making.
 
 ## Project Overview
 
-This demo addresses the job requirements for the AI Engineer Intern position at Firstep, demonstrating:
-
-- **Dialogflow Integration**: Conversational AI with intent recognition and entity extraction
+- **Dialogflow Integration**: Conversational Chatbot with intent recognition and entity extraction
 - **Rule-Based Matching**: Sophisticated compatibility scoring algorithms
-- **Explainable AI**: Transparent reasoning for all recommendations
+- **Explainable Chatbot**: Transparent reasoning for all recommendations
 - **Real-Time Processing**: Dynamic user profiling and matching
 - **Family Planning Focus**: Values-based compatibility for intentional family formation
 
