@@ -14,10 +14,10 @@
 - Find and select: `leorfernandes/chatbot-demo`
 
 ### 3. Configure Your Service
-Fill in these settings exactly:
+Fill in these settings exactly (copy and paste to avoid typos):
 
 ```
-Name: firstep-chatbot-demo
+Name: family-compatibility-demo
 Root Directory: (leave blank)
 Environment: Python 3
 Build Command: pip install -r requirements.txt
@@ -25,10 +25,13 @@ Start Command: cd backend && python app.py
 Instance Type: Free
 ```
 
+⚠️ **IMPORTANT**: Make sure "Start Command" is exactly: `cd backend && python app.py`
+(Double-check there's no typo like "backedn")
+
 ### 4. Deploy
 - Click "Create Web Service"
 - Wait 3-5 minutes for deployment
-- You'll get a URL like: `https://firstep-chatbot-demo.onrender.com`
+- You'll get a URL like: `https://family-compatibility-demo.onrender.com`
 
 ### 5. Test Your App
 - Visit your URL
@@ -59,4 +62,4 @@ Instance Type: Free
 - This is normal for free tier after 15 minutes of inactivity
 - Simply wait 30-60 seconds for it to wake up
 
-Your chatbot demo is now live and ready for your Firstep interview! 🎉
+Your chatbot demo is now live and ready for interviews! 🎉
