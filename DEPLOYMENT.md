@@ -1,6 +1,6 @@
 # Deployment Instructions
 
-## Option 1: Railway (Recommended - Free $5 credit monthly)
+## Render Deployment (Recommended - Completely Free)
 
 ### Prerequisites
 - GitHub account
@@ -8,39 +8,53 @@
 
 ### Steps
 
-1. **Push to GitHub first:**
+1. **Push to GitHub (if not already done):**
    ```bash
    git remote add origin https://github.com/yourusername/chatbot-demo.git
    git push -u origin main
    ```
 
-2. **Deploy on Railway:**
-   - Go to [railway.app](https://railway.app)
-   - Sign up with GitHub
-   - Click "Deploy from GitHub repo"
-   - Select your `chatbot-demo` repository
-   - Railway auto-detects Flask and deploys!
-
-3. **Your app will be live in minutes!**
-
-## Option 2: Render (Completely Free)
-
-### Steps
-
-1. **Push to GitHub** (same as above)
-
 2. **Deploy on Render:**
    - Go to [render.com](https://render.com)
-   - Sign up with GitHub
+   - Sign up with GitHub (no credit card required)
    - Click "New Web Service"
-   - Connect your GitHub repo
-   - Set configuration:
-     - **Build Command:** `pip install -r backend/requirements.txt`
-     - **Start Command:** `python backend/app.py`
+   - Connect your GitHub repository: `chatbot-demo`
+   
+3. **Configure deployment settings:**
+   - **Name:** `firstep-chatbot-demo` (or your preferred name)
+   - **Root Directory:** Leave blank (uses repository root)
+   - **Environment:** `Python 3`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `cd backend && python app.py`
+   - **Instance Type:** `Free`
 
-3. **Deploy and get your URL!**
+4. **Deploy:**
+   - Click "Create Web Service"
+   - Render will automatically build and deploy your app
+   - You'll get a live URL like: `https://your-app-name.onrender.com`
 
-## Option 3: Heroku (Paid - $7/month minimum)
+### Features of Render Free Tier:
+- ✅ Completely free (no credit card required)
+- ✅ 750 hours/month (plenty for demos)
+- ✅ Custom domain support
+- ✅ Automatic deploys from GitHub
+- ⚠️ Apps sleep after 15 minutes of inactivity (30-60 second wake-up time)
+
+### Pro Tips:
+- **For interviews:** Visit your app URL 2-3 minutes before the demo to wake it up
+- **Auto-deploy:** Any push to your main branch will automatically redeploy
+- **Logs:** Check the Render dashboard for deployment logs if issues occur
+
+## Alternative Options
+
+### Railway (Paid - $5 monthly credit)
+- Faster performance (no sleeping)
+- Better for production use
+- $5/month covers most demo applications
+
+### Heroku (Paid - $7/month minimum)
+- Traditional choice but requires payment
+- Good documentation and ecosystem
 
 ### Prerequisites
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed
