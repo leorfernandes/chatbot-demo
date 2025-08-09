@@ -2,6 +2,12 @@
 
 A sophisticated Dialogflow-powered chatbot demonstrating explainable AI for family planning compatibility matching. This project showcases rule-based recommendation systems, natural language processing, and transparent algorithmic decision-making.
 
+## Live Demo
+[Render Deployment](https://chatbot-demo-x6yd.onrender.com/)
+
+## Screenshot
+![Screenshot of the app](/media/screenshot.png)
+
 ## Project Overview
 
 - **Dialogflow Integration**: Conversational Chatbot with intent recognition and entity extraction
