@@ -174,31 +174,31 @@ class UserProfile:
 - **Comparative Analysis**: Strengths vs. considerations
 - **Trust Building**: Clear reasoning for recommendations
 
-## Frontend Experience
+## Features
 
-### Modern UI Design
-- **Tailwind CSS**: Utility-first CSS framework for rapid development
-- **Glass Morphism**: Modern translucent card design with backdrop blur
-- **Gradient Backgrounds**: Dynamic color gradients for visual appeal
-- **Responsive Design**: Mobile-first approach with responsive breakpoints
-- **Smooth Animations**: Bounce effects, hover transitions, and loading states
+## Modern UI & UX
+- Utility-first CSS (Tailwind) for rapid development
+- Glass morphism cards with backdrop blur
+- Dynamic gradient backgrounds
+- Mobile-first responsive layout with breakpoints
+- Smooth animations (bounce, hover transitions, loading states)
 
-### Interactive Demo
-- **Progressive Disclosure**: Information collected step-by-step
-- **Real-Time Feedback**: Immediate responses to inputs with typing indicators
-- **Formatted Messages**: Proper line breaks and bold text rendering
-- **Visual Status Tracking**: Progress indicators and status updates
-- **Accessible Interface**: Clean, professional design optimized for usability
+## Interactive Experience
+- Progressive disclosure (step-by-step info collection)
+- Real-time feedback with typing indicators
+- Formatted messages with line breaks and bold text
+- Progress indicators and status tracking
+- Accessible, clean, and professional interface
 
-### Demo Controls
-- **Start Onboarding**: Full experience walkthrough
-- **Skip to Matching**: See results immediately
-- **Reset Chat**: Start over with new session
+## Demo Controls
+- Start onboarding flow
+- Skip to matching results
+- Reset chat session
 
-### Technical Skills Demonstrated
-- **Dialogflow Expertise**: Intent design, entity extraction, webhook integration
-- **Python Development**: Flask, data processing, algorithm implementation
-- **Rule-Based Systems**: Weighted scoring, conditional logic, hybrid approaches
-- **API Design**: RESTful endpoints, JSON processing, error handling
-- **Modern Frontend**: Tailwind CSS, responsive design, interactive JavaScript
-- **Message Formatting**: HTML/Markdown conversion, text processing, rich content display
+## Tech Stack
+- **Frontend:** Tailwind CSS, responsive design, interactive JavaScript
+- **Backend:** Python (Flask) for data processing and algorithms
+- **AI Integration:** Dialogflow intents, entity extraction, webhook handling
+- **Logic:** Rule-based scoring, conditional logic, hybrid approaches
+- **APIs:** RESTful endpoints, JSON processing, error handling
+- **Formatting:** HTML/Markdown conversion, rich text display

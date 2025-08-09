@@ -1,6 +1,46 @@
 # Deployment Instructions
 
-## Option 1: Heroku (Recommended for Flask)
+## Option 1: Railway (Recommended - Free $5 credit monthly)
+
+### Prerequisites
+- GitHub account
+- Git repository pushed to GitHub
+
+### Steps
+
+1. **Push to GitHub first:**
+   ```bash
+   git remote add origin https://github.com/yourusername/chatbot-demo.git
+   git push -u origin main
+   ```
+
+2. **Deploy on Railway:**
+   - Go to [railway.app](https://railway.app)
+   - Sign up with GitHub
+   - Click "Deploy from GitHub repo"
+   - Select your `chatbot-demo` repository
+   - Railway auto-detects Flask and deploys!
+
+3. **Your app will be live in minutes!**
+
+## Option 2: Render (Completely Free)
+
+### Steps
+
+1. **Push to GitHub** (same as above)
+
+2. **Deploy on Render:**
+   - Go to [render.com](https://render.com)
+   - Sign up with GitHub
+   - Click "New Web Service"
+   - Connect your GitHub repo
+   - Set configuration:
+     - **Build Command:** `pip install -r backend/requirements.txt`
+     - **Start Command:** `python backend/app.py`
+
+3. **Deploy and get your URL!**
+
+## Option 3: Heroku (Paid - $7/month minimum)
 
 ### Prerequisites
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed
