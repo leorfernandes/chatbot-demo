@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firstep Compatibility Chatbot Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 2s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' }
+                        }
+                    },
+                    backgroundSize: {
+                        '400': '400% 400%'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-size-400 { background-size: 400% 400%; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 bg-size-400 animate-gradient">
+    <div class="container mx-auto p-4 lg:p-6 min-h-screen grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Header -->
+        <header class="lg:col-span-3 text-center bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20">
+            <h1 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                Firstep Compatibility Chatbot
+            </h1>
+            <p class="text-xl text-slate-600 mb-6">
+                Intentional Family Planning Through AI-Powered Matching
+            </p>
+            
+            <!-- Progress Bar -->
+            <div class="max-w-md mx-auto">
+                <div class="w-full bg-slate-200 rounded-full h-3 mb-3">
+                    <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                </div>
+                <span id="progressText" class="text-sm text-slate-500 font-medium">Ready to start your journey!</span>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="lg:col-span-2 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 flex flex-col overflow-hidden">
+            <!-- Messages -->
+            <div id="chatMessages" class="flex-1 p-6 overflow-y-auto max-h-96 lg:max-h-[500px] space-y-4">
+                <div class="flex justify-start">
+                    <div class="max-w-xs lg:max-w-md bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-bl-md shadow-sm border">
+                        <p class="mb-2">Hi! I'm the Firstep compatibility assistant. I'll help you find meaningful family planning connections based on your values, goals, and preferences.</p>
+                        <p>This is a demo showcasing explainable AI for compatibility matching. Ready to get started?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex gap-3">
+                <input 
+                    type="text" 
+                    id="userInput" 
+                    placeholder="Type your message here..." 
+                    disabled
+                    class="flex-1 px-4 py-3 border-2 border-slate-200 rounded-full focus:border-indigo-500 focus:outline-none disabled:bg-slate-100 disabled:text-slate-400 transition-colors"
+                >
+                <button 
+                    id="sendButton" 
+                    disabled
+                    class="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                    Send
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+            <!-- Demo Controls -->
+            <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/20">
+                <h3 class="text-xl font-bold text-slate-800 mb-4 bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Demo Controls
+                </h3>
+                
+                <div class="space-y-3">
+                    <button id="startDemo" class="w-full px-4 py-3 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all duration-300 hover:scale-105">
+                        Start Onboarding Demo
+                    </button>
+                    <button id="skipToMatching" class="w-full px-4 py-3 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 hover:scale-105">
+                        Skip to Matching Demo
+                    </button>
+                    <button id="resetChat" class="w-full px-4 py-3 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-pink-500 hover:text-white hover:border-pink-500 transition-all duration-300 hover:scale-105">
+                        Reset Chat
+                    </button>
+                </div>
+                
+                <!-- Status Indicator -->
+                <div class="mt-4 flex items-center justify-center p-3 bg-slate-100 rounded-xl">
+                    <div id="statusLight" class="w-3 h-3 rounded-full bg-slate-400 mr-2 transition-all duration-300"></div>
+                    <span id="statusText" class="text-sm font-medium text-slate-600">Ready</span>
+                </div>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/20">
+                <h3 class="text-xl font-bold text-slate-800 mb-4 bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+                    Demo Features
+                </h3>
+                
+                <div class="space-y-3">
+                    <div class="p-3 bg-slate-50 rounded-xl border-l-4 border-green-500 hover:bg-slate-100 transition-colors">
+                        <span class="font-semibold text-slate-800">Values-Based Matching:</span>
+                        <span class="text-slate-600"> Rule-based scoring system</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl border-l-4 border-purple-500 hover:bg-slate-100 transition-colors">
+                        <span class="font-semibold text-slate-800">Conversational Interface:</span>
+                        <span class="text-slate-600"> Natural dialogue flow</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl border-l-4 border-pink-500 hover:bg-slate-100 transition-colors">
+                        <span class="font-semibold text-slate-800">Real-time Compatibility:</span>
+                        <span class="text-slate-600"> Dynamic scoring algorithms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class CompatibilityChatbot {
+            constructor() {
+                this.chatMessages = document.getElementById('chatMessages');
+                this.userInput = document.getElementById('userInput');
+                this.sendButton = document.getElementById('sendButton');
+                this.startDemo = document.getElementById('startDemo');
+                this.skipToMatching = document.getElementById('skipToMatching');
+                this.resetChat = document.getElementById('resetChat');
+                this.progressBar = document.getElementById('progressBar');
+                this.progressText = document.getElementById('progressText');
+                this.statusLight = document.getElementById('statusLight');
+                this.statusText = document.getElementById('statusText');
+                
+                this.sessionId = 'demo_session_' + Math.random().toString(36).substr(2, 9);
+                this.currentStep = 'welcome';
+                this.totalSteps = 8;
+                this.currentProgress = 0;
+                
+                this.initializeEventListeners();
+                this.updateStatus('Ready', 'ready');
+            }
+            
+            initializeEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.userInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+                
+                this.startDemo.addEventListener('click', () => this.startOnboardingDemo());
+                this.skipToMatching.addEventListener('click', () => this.skipToMatchingDemo());
+                this.resetChat.addEventListener('click', () => this.resetChatDemo());
+            }
+            
+            startOnboardingDemo() {
+                this.enableChat();
+                this.addBotMessage("Great! Let's start with your onboarding. What's your name?");
+                this.currentStep = 'collect_name';
+                this.updateProgress(1, "Collecting basic information...");
+                this.updateStatus('Active', 'active');
+            }
+            
+            skipToMatchingDemo() {
+                this.enableChat();
+                this.simulateOnboardingComplete();
+                this.addBotMessage("Perfect! I've collected all your information. Your profile is now complete. Would you like me to find some compatible matches for you?");
+                this.currentStep = 'find_matches';
+                this.updateProgress(7, "Ready to find matches!");
+                this.updateStatus('Ready for Matching', 'active');
+            }
+            
+            resetChatDemo() {
+                this.chatMessages.innerHTML = `
+                    <div class="flex justify-start">
+                        <div class="max-w-xs lg:max-w-md bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-bl-md shadow-sm border">
+                            <p class="mb-2">Hi! I'm the Firstep compatibility assistant. I'll help you find meaningful family planning connections based on your values, goals, and preferences.</p>
+                            <p>This is a demo showcasing explainable AI for compatibility matching. Ready to get started?</p>
+                        </div>
+                    </div>
+                `;
+                this.disableChat();
+                this.currentStep = 'welcome';
+                this.sessionId = 'demo_session_' + Math.random().toString(36).substr(2, 9);
+                this.updateProgress(0, "Ready to start your journey!");
+                this.updateStatus('Ready', 'ready');
+            }
+            
+            enableChat() {
+                this.userInput.disabled = false;
+                this.sendButton.disabled = false;
+                this.userInput.focus();
+            }
+            
+            disableChat() {
+                this.userInput.disabled = true;
+                this.sendButton.disabled = true;
+            }
+            
+            sendMessage() {
+                const message = this.userInput.value.trim();
+                if (!message) return;
+                
+                this.addUserMessage(message);
+                this.userInput.value = '';
+                this.updateStatus('Processing...', 'processing');
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    this.processMessage(message);
+                    this.updateStatus('Active', 'active');
+                }, 800);
+            }
+            
+            updateProgress(step, text) {
+                this.currentProgress = step;
+                const percentage = (step / this.totalSteps) * 100;
+                this.progressBar.style.width = percentage + '%';
+                this.progressText.textContent = text;
+            }
+            
+            updateStatus(text, type) {
+                this.statusText.textContent = text;
+                
+                // Remove existing classes
+                this.statusLight.className = 'w-3 h-3 rounded-full transition-all duration-300';
+                
+                // Add appropriate color based on status
+                switch(type) {
+                    case 'ready':
+                        this.statusLight.classList.add('bg-slate-400');
+                        break;
+                    case 'active':
+                        this.statusLight.classList.add('bg-green-500', 'animate-pulse');
+                        break;
+                    case 'processing':
+                        this.statusLight.classList.add('bg-orange-500', 'animate-bounce');
+                        break;
+                }
+            }
+            
+            addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex justify-end';
+                messageDiv.innerHTML = `
+                    <div class="max-w-xs lg:max-w-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 rounded-2xl rounded-br-md shadow-sm">
+                        <p>${message}</p>
+                    </div>
+                `;
+                this.chatMessages.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+            
+            formatMessage(message) {
+                // Convert line breaks to HTML
+                let formatted = message.replace(/\n/g, '<br>');
+                
+                // Convert markdown bold to HTML
+                formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                
+                return formatted;
+            }
+            
+            addBotMessage(message) {
+                // Show typing indicator first
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'flex justify-start typing-message';
+                typingDiv.innerHTML = `
+                    <div class="max-w-xs lg:max-w-md bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-bl-md shadow-sm border">
+                        <div class="flex space-x-1">
+                            <div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                            <div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        </div>
+                    </div>
+                `;
+                this.chatMessages.appendChild(typingDiv);
+                this.scrollToBottom();
+                
+                // Replace with actual message after delay
+                setTimeout(() => {
+                    this.chatMessages.removeChild(typingDiv);
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'flex justify-start';
+                    const formattedMessage = this.formatMessage(message);
+                    messageDiv.innerHTML = `
+                        <div class="max-w-xs lg:max-w-md bg-slate-100 text-slate-800 p-4 rounded-2xl rounded-bl-md shadow-sm border">
+                            <div>${formattedMessage}</div>
+                        </div>
+                    `;
+                    this.chatMessages.appendChild(messageDiv);
+                    this.scrollToBottom();
+                }, 1200);
+            }
+            
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+            
+            processMessage(message) {
+                switch(this.currentStep) {
+                    case 'collect_name':
+                        this.addBotMessage(`Nice to meet you, ${message}! Now, what's your age?`);
+                        this.currentStep = 'collect_age';
+                        this.updateProgress(2, "Getting to know you...");
+                        break;
+                        
+                    case 'collect_age':
+                        this.addBotMessage("Thanks! And what city are you located in?");
+                        this.currentStep = 'collect_location';
+                        this.updateProgress(3, "Almost done with basics...");
+                        break;
+                        
+                    case 'collect_location':
+                        this.addBotMessage("Great! Now let's talk about your values. For each value, tell me how important it is to you on a scale of 1-5, where 5 is extremely important. How important is putting family first in your life decisions?");
+                        this.currentStep = 'collect_values';
+                        this.updateProgress(4, "Exploring your values...");
+                        break;
+                        
+                    case 'collect_values':
+                        this.addBotMessage("Perfect! Now, what are your main family planning goals? You can mention things like biological children, adoption, co-parenting, etc.");
+                        this.currentStep = 'collect_goals';
+                        this.updateProgress(5, "Understanding your family goals...");
+                        break;
+                        
+                    case 'collect_goals':
+                        this.addBotMessage("Got it! How would you describe your communication style? Are you more direct and honest, gentle and supportive, analytical and logical, emotional and expressive, or collaborative and consensus-building?");
+                        this.currentStep = 'collect_communication';
+                        this.updateProgress(6, "Learning your communication style...");
+                        break;
+                        
+                    case 'collect_communication':
+                        this.addBotMessage("Perfect! Finally, what's your preferred timeline for starting a family? Within 1 year, 1-3 years, 3-5 years, 5+ years, or are you flexible?");
+                        this.currentStep = 'collect_timeline';
+                        this.updateProgress(7, "Almost complete...");
+                        break;
+                        
+                    case 'collect_timeline':
+                        this.addBotMessage("Perfect! I've collected all your information. Your profile is now complete. Would you like me to find some compatible matches for you?");
+                        this.currentStep = 'find_matches';
+                        this.updateProgress(8, "Profile complete - ready to match!");
+                        break;
+                        
+                    case 'find_matches':
+                        this.showDemoMatches();
+                        this.currentStep = 'explain_matches';
+                        this.updateStatus('Matches Found!', 'active');
+                        break;
+                        
+                    case 'explain_matches':
+                        this.showDetailedExplanation();
+                        this.currentStep = 'complete';
+                        this.updateStatus('Demo Complete!', 'active');
+                        break;
+                        
+                    case 'complete':
+                        this.addBotMessage("Thanks for trying the demo! This showcases how Dialogflow can be used with explainable AI for compatibility matching. You can reset to try again or explore different responses.");
+                        break;
+                        
+                    default:
+                        this.addBotMessage("I'm not sure how to respond to that. Try using the demo controls to get started!");
+                }
+            }
+            
+            simulateOnboardingComplete() {
+                // Simulate that onboarding was completed
+                this.currentStep = 'find_matches';
+            }
+            
+            showDemoMatches() {
+                const matchesResponse = `Great! I found some compatible matches for you:
+
+1. Sarah (Age 32) - 87% compatibility
+   Location: Seattle, WA
+   Why it's a good match: Strong alignment on core values; highly compatible family goals; complementary communication styles; aligned timing preferences.
+
+2. Michael (Age 29) - 73% compatibility  
+   Location: Portland, OR
+   Why it's a good match: Some shared core values; some compatible family goals; workable communication differences; different timeline expectations.
+
+3. Jessica (Age 35) - 64% compatibility
+   Location: San Francisco, CA
+   Why it's a good match: Different value priorities; some shared family aspirations; potentially challenging communication dynamics; different timeline expectations.
+
+Would you like me to explain any of these matches in more detail?`;
+                
+                this.addBotMessage(matchesResponse);
+            }
+            
+            showDetailedExplanation() {
+                const explanationResponse = `Here's a detailed explanation of your top match with Sarah:
+
+**Overall Assessment:** Excellent compatibility - This match shows strong potential for a successful family partnership.
+
+**Strengths:**
+• Strong alignment on core life values
+• Shared vision for family structure and goals  
+• Compatible communication and conflict resolution styles
+• Aligned timeline for family planning
+
+**Detailed Breakdown:**
+• Values Compatibility (0.87): You both prioritize similar life values and principles
+• Family Goals Alignment (0.92): Your family planning goals are highly aligned
+• Communication Compatibility (0.78): Your communication styles complement each other well
+• Timeline Alignment (0.85): Your family planning timelines align well
+
+**Next Steps:**
+• Schedule a video call to explore your connection further
+• Discuss your family planning timeline in detail
+• Share more about your personal backgrounds and experiences
+
+This analysis helps you understand the foundation for a potential partnership. The explainable AI ensures you know exactly why this match was recommended!`;
+                
+                this.addBotMessage(explanationResponse);
+            }
+        }
+        
+        // Initialize the chatbot when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new CompatibilityChatbot();
+        });
+    </script>
+</body>
+</html>

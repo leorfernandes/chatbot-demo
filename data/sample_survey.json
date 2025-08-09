@@ -1,0 +1,167 @@
+{
+  "survey_questions": {
+    "basic_info": [
+      {
+        "id": "name",
+        "question": "What's your name?",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "age", 
+        "question": "What's your age?",
+        "type": "number",
+        "required": true,
+        "min": 18,
+        "max": 65
+      },
+      {
+        "id": "location",
+        "question": "What city are you located in?",
+        "type": "text", 
+        "required": true
+      }
+    ],
+    "values": [
+      {
+        "id": "family_first",
+        "question": "How important is putting family first in your life decisions?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "career_balance", 
+        "question": "How important is work-life balance and career flexibility?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "financial_security",
+        "question": "How important is financial security and stability?", 
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "emotional_intimacy",
+        "question": "How important is emotional intimacy and deep connection?",
+        "type": "scale", 
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "shared_parenting",
+        "question": "How important is shared parenting responsibilities?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5], 
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "personal_growth",
+        "question": "How important is personal growth and self-development?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "community_involvement", 
+        "question": "How important is community involvement and social connection?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      },
+      {
+        "id": "spiritual_connection",
+        "question": "How important is spiritual or philosophical alignment?",
+        "type": "scale",
+        "scale": [1, 2, 3, 4, 5],
+        "labels": ["Not important", "Slightly important", "Moderately important", "Very important", "Extremely important"]
+      }
+    ],
+    "family_goals": [
+      {
+        "id": "family_goals",
+        "question": "What are your main family planning goals? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+          {"id": "biological_children", "label": "Having biological children"},
+          {"id": "adoption", "label": "Adoption"},
+          {"id": "blended_family", "label": "Creating a blended family"},
+          {"id": "single_parent_support", "label": "Supporting single parent families"},
+          {"id": "co_parenting", "label": "Co-parenting arrangement"},
+          {"id": "extended_family_close", "label": "Close-knit extended family"}
+        ]
+      }
+    ],
+    "communication": [
+      {
+        "id": "communication_style",
+        "question": "How would you describe your communication style?",
+        "type": "single_choice",
+        "options": [
+          {"id": "direct_honest", "label": "Direct and honest"},
+          {"id": "gentle_supportive", "label": "Gentle and supportive"},
+          {"id": "analytical_logical", "label": "Analytical and logical"},
+          {"id": "emotional_expressive", "label": "Emotional and expressive"},
+          {"id": "collaborative_consensus", "label": "Collaborative and consensus-building"}
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "id": "timeline",
+        "question": "What's your preferred timeline for starting a family?",
+        "type": "single_choice", 
+        "options": [
+          {"id": "within_1_year", "label": "Within 1 year"},
+          {"id": "1_to_3_years", "label": "1-3 years"},
+          {"id": "3_to_5_years", "label": "3-5 years"},
+          {"id": "5_plus_years", "label": "5+ years"},
+          {"id": "flexible_timing", "label": "Flexible timing"}
+        ]
+      }
+    ]
+  },
+  "sample_responses": [
+    {
+      "user_id": "demo_user_1",
+      "name": "Alex",
+      "age": 31,
+      "location": "Chicago, IL",
+      "values": {
+        "family_first": 4,
+        "career_balance": 5,
+        "financial_security": 4,
+        "emotional_intimacy": 5,
+        "shared_parenting": 5,
+        "personal_growth": 4,
+        "community_involvement": 3,
+        "spiritual_connection": 2
+      },
+      "family_goals": ["biological_children", "shared_parenting"],
+      "communication_style": "collaborative_consensus",
+      "timeline": "1_to_3_years"
+    },
+    {
+      "user_id": "demo_user_2", 
+      "name": "Jordan",
+      "age": 28,
+      "location": "Austin, TX",
+      "values": {
+        "family_first": 5,
+        "career_balance": 3,
+        "financial_security": 5,
+        "emotional_intimacy": 4,
+        "shared_parenting": 4,
+        "personal_growth": 3,
+        "community_involvement": 4,
+        "spiritual_connection": 5
+      },
+      "family_goals": ["adoption", "extended_family_close"],
+      "communication_style": "gentle_supportive",
+      "timeline": "3_to_5_years"
+    }
+  ]
+}

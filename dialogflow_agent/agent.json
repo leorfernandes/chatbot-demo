@@ -1,0 +1,262 @@
+{
+  "name": "firstep-compatibility-chatbot",
+  "description": "AI-powered compatibility chatbot for intentional family planning",
+  "language": "en",
+  "webhook": {
+    "url": "https://your-backend-url.com/webhook",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "intents": [
+    {
+      "name": "welcome",
+      "trainingPhrases": [
+        "hello",
+        "hi",
+        "hey",
+        "start",
+        "begin",
+        "let's start",
+        "I want to find matches"
+      ],
+      "responses": {
+        "text": "Hi! I'm here to help you find meaningful family planning connections. I'll ask you some questions about your values, goals, and preferences to find compatible matches. Let's start with some basic information. What's your name?"
+      },
+      "webhook": true
+    },
+    {
+      "name": "collect.basic.info",
+      "trainingPhrases": [
+        "My name is John",
+        "I'm Sarah",
+        "Call me Alex",
+        "I am 30 years old",
+        "I'm 25",
+        "My age is 32",
+        "I live in Seattle",
+        "I'm from New York",
+        "I'm located in Chicago"
+      ],
+      "parameters": [
+        {
+          "name": "person",
+          "entity": "@sys.person",
+          "required": false
+        },
+        {
+          "name": "age",
+          "entity": "@sys.age",
+          "required": false
+        },
+        {
+          "name": "location",
+          "entity": "@sys.location",
+          "required": false
+        }
+      ],
+      "webhook": true
+    },
+    {
+      "name": "collect.values",
+      "trainingPhrases": [
+        "5",
+        "4 out of 5",
+        "very important",
+        "extremely important",
+        "not important",
+        "somewhat important",
+        "1",
+        "2",
+        "3",
+        "moderately important"
+      ],
+      "parameters": [
+        {
+          "name": "number",
+          "entity": "@sys.number",
+          "required": false
+        }
+      ],
+      "webhook": true
+    },
+    {
+      "name": "collect.family.goals",
+      "trainingPhrases": [
+        "I want biological children",
+        "adoption is important to me",
+        "I'm interested in co-parenting",
+        "biological children and adoption",
+        "blended family",
+        "single parent support",
+        "extended family closeness"
+      ],
+      "parameters": [
+        {
+          "name": "family-goals",
+          "entity": "@family_goals",
+          "isList": true,
+          "required": false
+        }
+      ],
+      "webhook": true
+    },
+    {
+      "name": "collect.communication.style",
+      "trainingPhrases": [
+        "I'm direct and honest",
+        "gentle and supportive",
+        "analytical and logical", 
+        "emotional and expressive",
+        "collaborative",
+        "I prefer consensus building",
+        "I'm more analytical",
+        "I'm gentle in my approach"
+      ],
+      "parameters": [
+        {
+          "name": "communication-style",
+          "entity": "@communication_style",
+          "required": false
+        }
+      ],
+      "webhook": true
+    },
+    {
+      "name": "collect.timeline",
+      "trainingPhrases": [
+        "within 1 year",
+        "1 to 3 years",
+        "3 to 5 years",
+        "5 plus years",
+        "flexible timing",
+        "I'm flexible",
+        "soon",
+        "in a few years",
+        "not sure about timing"
+      ],
+      "parameters": [
+        {
+          "name": "timeline",
+          "entity": "@timeline",
+          "required": false
+        }
+      ],
+      "webhook": true
+    },
+    {
+      "name": "find.matches",
+      "trainingPhrases": [
+        "find matches",
+        "show me matches",
+        "find compatible people",
+        "yes find matches",
+        "I want to see my matches",
+        "let's find matches",
+        "find my matches"
+      ],
+      "webhook": true
+    },
+    {
+      "name": "explain.match",
+      "trainingPhrases": [
+        "explain this match",
+        "why is this a good match",
+        "tell me more about this match",
+        "explain the compatibility",
+        "why did you recommend this",
+        "more details please",
+        "explain the first match"
+      ],
+      "parameters": [
+        {
+          "name": "match-number",
+          "entity": "@sys.number",
+          "required": false
+        }
+      ],
+      "webhook": true
+    }
+  ],
+  "entities": [
+    {
+      "name": "family_goals",
+      "entries": [
+        {
+          "value": "biological_children",
+          "synonyms": ["biological children", "bio children", "having children", "natural children"]
+        },
+        {
+          "value": "adoption",
+          "synonyms": ["adopt", "adopting", "adopted children"]
+        },
+        {
+          "value": "blended_family",
+          "synonyms": ["blended family", "step children", "bringing families together"]
+        },
+        {
+          "value": "co_parenting",
+          "synonyms": ["co-parenting", "shared parenting", "co parenting"]
+        },
+        {
+          "value": "single_parent_support",
+          "synonyms": ["single parent", "single parenting", "solo parenting"]
+        },
+        {
+          "value": "extended_family_close",
+          "synonyms": ["extended family", "close family", "family closeness"]
+        }
+      ]
+    },
+    {
+      "name": "communication_style",
+      "entries": [
+        {
+          "value": "direct_honest",
+          "synonyms": ["direct", "honest", "straightforward", "blunt"]
+        },
+        {
+          "value": "gentle_supportive",
+          "synonyms": ["gentle", "supportive", "kind", "nurturing"]
+        },
+        {
+          "value": "analytical_logical",
+          "synonyms": ["analytical", "logical", "rational", "methodical"]
+        },
+        {
+          "value": "emotional_expressive",
+          "synonyms": ["emotional", "expressive", "feelings-focused", "heart-centered"]
+        },
+        {
+          "value": "collaborative_consensus",
+          "synonyms": ["collaborative", "consensus", "team-oriented", "democratic"]
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "entries": [
+        {
+          "value": "within_1_year",
+          "synonyms": ["within 1 year", "within a year", "soon", "immediately", "asap"]
+        },
+        {
+          "value": "1_to_3_years", 
+          "synonyms": ["1 to 3 years", "1-3 years", "couple years", "2-3 years"]
+        },
+        {
+          "value": "3_to_5_years",
+          "synonyms": ["3 to 5 years", "3-5 years", "few years", "4-5 years"]
+        },
+        {
+          "value": "5_plus_years",
+          "synonyms": ["5 plus years", "5+ years", "many years", "long term"]
+        },
+        {
+          "value": "flexible_timing",
+          "synonyms": ["flexible", "open", "not sure", "depends", "variable"]
+        }
+      ]
+    }
+  ]
+}
