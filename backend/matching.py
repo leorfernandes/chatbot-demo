@@ -1,3 +1,11 @@
+"""
+Compatibility matching engine for family planning partnerships
+
+Implements rule-based algorithms to calculate compatibility scores
+between users based on values, goals, communication styles, and timelines.
+Uses weighted scoring for explainable AI recommendations.
+"""
+
 import numpy as np
 import pandas as pd
 from typing import List, Tuple
@@ -5,24 +13,36 @@ from models import UserProfile, CompatibilityScore
 
 class CompatibilityEngine:
     """
-    Rule-based and weighted compatibility matching engine
-        Family planning compatibility matching engine.
+    Main compatibility calculation engine
     
-    Uses rule-based algorithms for explainable AI recommendations.
+    Calculates multi-dimensional compatibility scores between users
+    using weighted factors: values (35%), goals (30%), 
+    communication (20%), and timeline (15%).
     """
     
     def __init__(self):
-        # Weights for different compatibility factors
+        """Initialize the engine with scoring weights"""
+        # Weights for different compatibility factors (must sum to 1.0)
         self.weights = {
-            'values': 0.35,
-            'goals': 0.30, 
-            'communication': 0.20,
-            'timeline': 0.15
+            'values': 0.35,        # Values alignment weight
+            'goals': 0.30,         # Family goals compatibility weight
+            'communication': 0.20, # Communication style match weight
+            'timeline': 0.15       # Timeline alignment weight
         }
     
     def calculate_compatibility(self, user1: UserProfile, user2: UserProfile) -> CompatibilityScore:
-        """Calculate comprehensive compatibility score between two users"""
+        """
+        Calculate comprehensive compatibility score between two users
         
+        Args:
+            user1: First user's profile
+            user2: Second user's profile
+            
+        Returns:
+            CompatibilityScore object with overall score and breakdown
+        """
+        
+        # Calculate individual dimension scores
         values_score = self._calculate_values_score(user1, user2)
         goals_score = self._calculate_goals_score(user1, user2)
         communication_score = self._calculate_communication_score(user1, user2)

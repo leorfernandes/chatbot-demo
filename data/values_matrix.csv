@@ -1,3 +1,19 @@
+# Values Compatibility Matrix
+# 
+# This CSV file contains a correlation matrix showing how compatible different
+# core values are with each other. Scores range from 0.0 to 1.0, where:
+# - 1.0 = Perfect compatibility (identical or highly complementary values)
+# - 0.7+ = High compatibility (values that work well together)
+# - 0.5-0.7 = Moderate compatibility (some alignment possible)
+# - <0.5 = Lower compatibility (potential conflicts or different priorities)
+#
+# Usage: This matrix could be used for advanced compatibility calculations
+# that consider not just individual value scores, but how different value
+# combinations interact with each other.
+#
+# Format: Each row represents a value, each column represents another value
+# The intersection shows their compatibility score.
+#
 value,family_first,career_balance,financial_security,emotional_intimacy,shared_parenting,personal_growth,community_involvement,spiritual_connection
 family_first,1.0,0.7,0.6,0.8,0.9,0.5,0.6,0.4
 career_balance,0.7,1.0,0.8,0.6,0.7,0.9,0.5,0.3

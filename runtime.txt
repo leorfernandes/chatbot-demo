@@ -1,1 +1,4 @@
+# Specifies Python version for Render deployment
+# This ensures consistent Python version across development and production
+# Using 3.11.9 for stability and compatibility with all dependencies
 python-3.11.9

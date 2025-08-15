@@ -1,3 +1,6 @@
+# Flask web application for compatibility chatbot demo
+# Handles Dialogflow webhook integration and matching logic
+
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import json
@@ -6,40 +9,60 @@ from models import UserProfile, SurveyData
 from matching import CompatibilityEngine
 from explain import ExplainabilityEngine
 
+# Initialize Flask app with template folder pointing to frontend
 app = Flask(__name__, template_folder='../frontend')
-CORS(app)
+CORS(app)  # Enable Cross-Origin Resource Sharing for frontend
 
-# Initialize engines
+# Initialize matching and explanation engines
 compatibility_engine = CompatibilityEngine()
 explainability_engine = ExplainabilityEngine()
 
-# In-memory storage (would be database in production)
-users_db = {}
-current_session = {}
+# In-memory storage for demo purposes (would use database in production)
+users_db = {}          # Stores user profiles by ID
+current_session = {}   # Tracks current conversation sessions
 
 @app.route('/')
 def index():
-    """Serve the main chat interface"""
+    """Serve the main chat interface HTML page"""
     return render_template('index.html')
 
 @app.route('/webhook', methods=['POST'])
 def dialogflow_webhook():
-    """Handle Dialogflow webhook requests"""
+    """
+    Handle incoming webhook requests from Dialogflow
+    
+    Processes user intents and returns appropriate responses
+    based on the conversation flow and user data collection
+    """
     req = request.get_json()
     
+    # Extract intent and parameters from Dialogflow request
     intent_name = req.get('queryResult', {}).get('intent', {}).get('displayName', '')
     parameters = req.get('queryResult', {}).get('parameters', {})
-    session_id = req.get('session', '').split('/')[-1]
+    session_id = req.get('session', '').split('/')[-1]  # Get unique session identifier
     
+    # Process the intent and generate response
     response_text = handle_intent(intent_name, parameters, session_id)
     
+    # Return response in Dialogflow webhook format
     return jsonify({
         'fulfillmentText': response_text
     })
 
 def handle_intent(intent_name, parameters, session_id):
-    """Route intents to appropriate handlers"""
+    """
+    Route different intents to their appropriate handler functions
     
+    Args:
+        intent_name: The name of the detected Dialogflow intent
+        parameters: Extracted entities/parameters from user input
+        session_id: Unique identifier for this conversation session
+    
+    Returns:
+        String response to send back to user
+    """
+    
+    # Route to specific intent handlers
     if intent_name == 'welcome':
         return handle_welcome(session_id)
     elif intent_name == 'collect.basic.info':
@@ -60,7 +83,11 @@ def handle_intent(intent_name, parameters, session_id):
         return "I'm sorry, I didn't understand that. Could you please rephrase?"
 
 def handle_welcome(session_id):
-    """Welcome new users and start onboarding"""
+    """
+    Initialize a new conversation session and welcome the user
+    
+    Sets up session tracking and provides initial instructions
+    """
     current_session[session_id] = {'step': 'welcome'}
     
     return ("Hi! I'm here to help you find meaningful family planning connections. "
@@ -69,7 +96,16 @@ def handle_welcome(session_id):
             "What's your name?")
 
 def handle_basic_info(parameters, session_id):
-    """Collect basic user information"""
+    """
+    Collect and store basic user information (name, age, location)
+    
+    Args:
+        parameters: Dict containing extracted user info from Dialogflow
+        session_id: Current conversation session identifier
+    
+    Returns:
+        Response prompting for next piece of information
+    """
     if session_id not in current_session:
         current_session[session_id] = {}
     

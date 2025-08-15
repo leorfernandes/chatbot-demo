@@ -1,6 +1,11 @@
-flask==2.3.3
-pandas==2.0.3
-numpy==1.24.3
-requests==2.31.0
-flask-cors==4.0.0
-google-cloud-dialogflow==2.24.1
+# Core web framework dependencies
+flask==2.3.3                    # Main web framework for handling HTTP requests and routing
+flask-cors==4.0.0               # Cross-Origin Resource Sharing support for frontend integration
+
+# Data processing and mathematical computation
+pandas==2.0.3                   # Data manipulation and analysis (used for potential CSV data handling)
+numpy==1.24.3                   # Numerical computing library for compatibility calculations
+
+# External API and networking
+requests==2.31.0                # HTTP library for making API calls (if needed for external services)
+google-cloud-dialogflow==2.24.1 # Google Dialogflow client library for NLP integration
